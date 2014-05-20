@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Table sandbox</title>
+
+    <!-- ExtJS -->
+    <link rel="stylesheet" type="text/css"
+        href="/extjs/resources/css/ext-all.css" />
+    <script type="text/javascript"
+        src="/extjs/ext-all-debug.js"></script>
+
+    <script type="text/javascript" src="/extjs/examples/ux/grid/FiltersFeature.js"></script>
+
+    <!-- Shared -->
+    <link rel="stylesheet" type="text/css" href="/extjs/examples/shared/example.css" />
+
+    <!-- Example -->
+    <link rel="stylesheet" type="text/css" href="/extjs/examples/ux/grid/css/GridFilters.css" />
+    <link rel="stylesheet" type="text/css" href="/extjs/examples/ux/grid/css/RangeMenu.css" />
+
+    <!-- ESSS -->
+    <script type="text/javascript" src="/sandbox/setup_dyn_ext_paths.js"></script>
+    <script type="text/javascript" src="/sandbox/global.js"></script>
+    <script type="text/javascript" src="/sandbox/meta.js"></script>
+
+    <script type="text/javascript" src="/sandbox/table.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+	    Ext.onReady(function() {
+            Ext.create('Ext.window.Window', {
+            height : 800,
+            width : 600,
+            closable : false,
+            title : 'Table',
+            border : false,
+            layout : 'fit',
+            items : grid
+            }).show();
+        });
+    </script>
+</body>
+</html>
