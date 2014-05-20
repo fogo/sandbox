@@ -1,0 +1,5 @@
+# extjs and other external JS stuff
+source/web/dist/*
+
+# python
+*.pyc
