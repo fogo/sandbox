@@ -9,7 +9,7 @@ if __name__ == '__main__':
         pass
 
     r = Root()
-    r.foo = Contents()
+    r.table = Contents()
 
 
     class Sandbox(object):

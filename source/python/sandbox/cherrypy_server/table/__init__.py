@@ -31,15 +31,16 @@ class Contents(object):
 
     exposed = True
 
+    def ItemDump(self, k, v):
+        vv = v.copy()
+        vv["id"] = k
+        return vv
+
+
     def GET(self, *args, **kwargs):
         # start, _dc, limit, page
 
-        def ItemDump(k, v):
-            vv = v.copy()
-            vv["id"] = k
-            return vv
-
-        barriers_dump = [ItemDump(k, v) for k, v in barriers.iteritems()]
+        barriers_dump = [self.ItemDump(k, v) for k, v in barriers.iteritems()]
 
         return json.dumps({
             "data": barriers_dump,
@@ -54,11 +55,16 @@ class Contents(object):
         raw = cherrypy.request.body.read()
         parsed = json.loads(raw)
 
+        updated = []
         for client_barrier in parsed:
             barrier_id = client_barrier.pop("id")
             barriers[barrier_id] = client_barrier
+            updated.append(barrier_id)
+
+        barriers_dump = [self.ItemDump(k, barriers[k]) for k in updated]
 
         return json.dumps({
+            "data": barriers_dump,
             "meta": {
                 "total": len(barriers),
                 "success": True,
@@ -70,11 +76,16 @@ class Contents(object):
         raw = cherrypy.request.body.read()
         parsed = json.loads(raw)
 
+        added = []
         for client_barrier in parsed:
-            barrier_id = client_barrier.pop("id")
+            barrier_id = max(barriers.iterkeys()) + 1
             barriers[barrier_id] = client_barrier
+            added.append(barrier_id)
+
+        barriers_dump = [self.ItemDump(k, barriers[k]) for k in added]
 
         return json.dumps({
+            "data": barriers_dump,
             "meta": {
                 "total": len(barriers),
                 "success": True,

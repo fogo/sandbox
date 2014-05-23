@@ -39,7 +39,7 @@ meta.Barrier = {
         {name: 'official', type: 'boolean', caption: tr('Official'), permissions: roles.KING},
     ],
     connection: {
-        url: '/contents/foo'
+        url: '/contents/table'
     }
 };
 
